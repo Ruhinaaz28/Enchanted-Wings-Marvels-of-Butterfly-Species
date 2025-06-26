@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .background-container {
+            position: relative;
+            flex: 1;
+            background: url("static/background.jpg") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            animation: fadeIn 2s ease-in;
+        }
+
+        h1 {
+            font-size: 40px;
+            animation: slideDown 1s ease-out;
+        }
+
+        .prediction {
+            font-size: 28px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            animation: glowFade 3s infinite;
+        }
+
+        .butterfly-img {
+            margin-top: 30px;
+            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #ff4db8;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .home-btn {
+            margin-top: 30px;
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: #ff4db8;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        .home-btn:hover {
+            background-color: #e60073;
+        }
+
+        footer {
+    background: none;
+    color: white;
+    margin-top: 30px;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px 0;
+    animation: fadeIn 2s ease-in;
+}
+
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 10px #ff4db8; }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px #ff4db8; }
+            100% { transform: scale(1); box-shadow: 0 0 10px #ff4db8; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container">
+        <div class="overlay">
+            <h1>🦋 Prediction Result</h1>
+
+            {% if prediction %}
+                <div class="prediction">Predicted Species: <strong>{{ prediction }}</strong></div>
+            {% endif %}
+
+            {% if image_path %}
+                <img src="{{ image_path }}" alt="Uploaded Butterfly" class="butterfly-img">
+            {% endif %}
+
+            <a href="/" class="home-btn">← Back to Home</a>
+
+            <!-- ✅ Footer INSIDE overlay -->
+            <footer>
+                © 2025 Enchanted Wings | Developed with 💙 for butterfly lovers
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
