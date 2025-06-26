@@ -6,7 +6,7 @@ import os
 import random
 
 app = Flask(__name__)
-model = load_model("model_reduced.h5")
+model = load_model("vgg16_model.h5")
 
 # Auto-sorted class names from training folders
 CLASS_NAMES = sorted(os.listdir("train"))
